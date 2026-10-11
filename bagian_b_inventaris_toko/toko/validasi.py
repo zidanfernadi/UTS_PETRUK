@@ -1,8 +1,14 @@
+# validasi.py
+# Modul ini isinya fungsi-fungsi untuk mengecek input dan data
+# sebelum data diproses atau disimpan ke file.
 class DataTidakValidError(Exception):
+    # Exception buatan sendiri, dipakai kalau data kosong atau negatif
     pass 
 
 
 def cek_tidak_kosong(teks, nama_field):
+    # Menghapus spasi di awal/akhir, lalu cek apakah field masih kosong.
+    # Tanda ; juga dilarang karena dipakai sebagai pemisah kolom di file.
     teks = teks.strip()
     if teks == "" or ";" in teks:
         raise DataTidakValidError(f"{nama_field} kosong atau mengandung ';'!")
@@ -10,6 +16,8 @@ def cek_tidak_kosong(teks, nama_field):
 
 
 def cek_angka_positif(teks, nama_field):
+    # Menghapus spasi di awal/akhir, lalu cek apakah field masih kosong.
+    # Tanda ; juga dilarang karena dipakai sebagai pemisah kolom di file.
     angka = int(teks)
     if angka < 0:
         raise DataTidakValidError(f"{nama_field} tidak boleh negatif!")
@@ -17,6 +25,8 @@ def cek_angka_positif(teks, nama_field):
 
 
 def parse_baris(baris):
+    # Menghapus spasi di awal/akhir, lalu cek apakah field masih kosong.
+    # Tanda ; juga dilarang karena dipakai sebagai pemisah kolom di file.
     bagian = baris.strip().split(";")
     if len(bagian) != 5:
         raise DataTidakValidError("jumlah kolom harus 5")
@@ -29,6 +39,7 @@ def parse_baris(baris):
 
 
 if __name__ == "__main__":
+    # Pengujian lokal, hanya jalan kalau file ini dieksekusi langsung
     print("Angka valid     :", cek_angka_positif("15", "Harga"))
     for isi in ("-5", "abc"):
         try:

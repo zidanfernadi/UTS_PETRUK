@@ -1,7 +1,7 @@
 ===== LAPORAN INVENTARIS TOKO =====
 Jumlah jenis barang : 9
-Total nilai stok    : Rp 3.394.500
-Rata-rata harga     : Rp 16.389
+Total nilai stok    : Rp 3.414.500
+Rata-rata harga     : Rp 16.500
 Barang termahal     : Beras 5kg
 Stok menipis        : 3 barang (<= 10)
   - Minyak Goreng 1L (sisa 8)

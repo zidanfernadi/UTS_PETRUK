@@ -1,3 +1,5 @@
+# testing.py
+# Pengujian dengan unittest. Jalankan dari folder utama: python -m toko.testing
 import os
 import unittest
 
@@ -9,7 +11,7 @@ from .fileio import buat_file, tambah_data, baca_data
 
 class TestValidasi(unittest.TestCase):
 
-    def test_field_kosong(self):
+    def test_field_kosong(self): # raise buatan sendiri
         with self.assertRaises(DataTidakValidError):
             cek_tidak_kosong("   ", "Nama")
 
@@ -18,6 +20,7 @@ class TestValidasi(unittest.TestCase):
             cek_angka_positif("-10", "Stok")
 
     def test_bukan_angka(self):
+        # field kosong harus memunculkan exception buatan sendiri
         with self.assertRaises(ValueError):
             cek_angka_positif("abc", "Harga")
 
@@ -31,8 +34,10 @@ class TestValidasi(unittest.TestCase):
 
 
 class TestProcessing(unittest.TestCase):
+    # field kosong harus memunculkan exception buatan sendiri
 
     def setUp(self):
+        # test fixture: data barang yang disiapkan sebelum tiap pengujian
         self.inv = Inventaris()
         self.inv.tambah_barang(Barang("A1", "Beras", 60000, 10, kategori="Sembako"))
         self.inv.tambah_barang(Barang("A2", "Gula", 16000, 5, kategori="Sembako"))
@@ -67,6 +72,7 @@ class TestFileIO(unittest.TestCase):
     NAMA = "data_uji_sementara.txt"
 
     def setUp(self):
+        # test fixture: data disiapkan sebelum tiap pengujian
         self.tearDown()
         buat_file(self.NAMA)
 

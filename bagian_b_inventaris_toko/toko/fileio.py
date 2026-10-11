@@ -1,3 +1,5 @@
+# fileio.py
+# Semua operasi file (buat, tambah, baca, tulis laporan), semuanya pakai with open().
 from .processing import Barang
 from .validasi import parse_baris, DataTidakValidError
 
@@ -17,6 +19,7 @@ def pesan_file_belum_ada(nama_file):
     print(f"Error: file {nama_file} belum ada, buat dulu lewat menu 1.")
 
 def buat_file(nama_file):
+    # Mode 'x': kalau file sudah ada, datanya tidak tertimpa
     try:
         with open(nama_file, "x") as file:
             file.write("\n".join(DATA_AWAL) + "\n")
@@ -25,6 +28,8 @@ def buat_file(nama_file):
         print(f"Gagal: file {nama_file} sudah ada, data lama tidak ditimpa.")
 
 def tambah_data(nama_file, barang):
+    # Mode 'a': data baru masuk di akhir file. Karena 'a' otomatis membuat file
+    # kalau belum ada, keberadaan file dicek dulu dengan mode 'r'.
     try:
         with open(nama_file, "r"):
             pass
@@ -35,6 +40,8 @@ def tambah_data(nama_file, barang):
     print(f"Barang '{barang.nama}' berhasil ditambahkan.")
 
 def baca_data(nama_file):
+    # Mode 'r' dibaca baris demi baris. Baris rusak dilewati, bukan menghentikan
+    # program. Mengembalikan list barang dan jumlah baris yang dilewati.
     daftar_barang, jumlah_rusak = [], 0
     try:
         with open(nama_file, "r") as file:
@@ -51,6 +58,7 @@ def baca_data(nama_file):
     return daftar_barang, jumlah_rusak
 
 def tulis_laporan(nama_file, isi_laporan):
+    # Mode 'w': laporan dibuat baru dan menimpa laporan lama
     with open(nama_file, "w") as file:
         file.write(isi_laporan + "\n")
     print(f"Laporan berhasil ditulis ke {nama_file}")
