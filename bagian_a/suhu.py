@@ -1,3 +1,6 @@
+# suhu.py
+# Program analisis suhu harian: baca suhu.txt -> analisis -> tulis laporan_suhu.txt
+
 BATAS_PANAS = 32
 
 
@@ -16,20 +19,24 @@ def baca_suhu(nama_file):
 
 
 def hitung_rata_rata(*suhu):
+    # *args: jumlah suhu yang dikirim bebas
     return sum(suhu) / len(suhu)
 
 
 def analisis_suhu(data, batas_panas=BATAS_PANAS):
+    # Tahap 2: analisis suhu
     semua_suhu = [d["suhu"] for d in data]
     rata_rata = hitung_rata_rata(*semua_suhu)
-
+    # lambda sebagai key untuk mencari suhu tertinggi dan terendah
     tertinggi = max(data, key=lambda d: d["suhu"])
     terendah = min(data, key=lambda d: d["suhu"])
 
+    # lamda untuk menentukan kategori tiap hari
     kategori = lambda s: "Panas" if s >= batas_panas else "Normal"
     for d in data:
         d["kategori"] = kategori(d["suhu"])
 
+    # filter + lambda untuk menghitung jumlah hari Panas
     jumlah_panas = len(list(filter(lambda d: d["kategori"] == "Panas", data)))
 
     return {
@@ -42,6 +49,7 @@ def analisis_suhu(data, batas_panas=BATAS_PANAS):
 
 
 def tulis_laporan(hasil, nama_file="laporan_suhu.txt"):
+    # Tahap 3: menulis laporan ke file dengan mode 'w'
     with open(nama_file, "w") as file:
         file.write("===== LAPORAN SUHU MINGGUAN =====\n")
         for d in hasil["data"]:
@@ -56,6 +64,7 @@ def tulis_laporan(hasil, nama_file="laporan_suhu.txt"):
 
 
 def tampilkan_laporan(nama_file="laporan_suhu.txt"):
+    # menampilkan isi laporan ke layar
     with open(nama_file, "r") as file:
         for baris in file:
             print(baris.rstrip())
@@ -64,7 +73,8 @@ def tampilkan_laporan(nama_file="laporan_suhu.txt"):
 def main():
     data = baca_suhu("suhu.txt")
     if len(data) == 0:
-        return
+        return # file tidak ada atau kosong, proses dihentikan
+    # keyword argument pada pemanggilan fungsi
     hasil = analisis_suhu(data, batas_panas=BATAS_PANAS)
     tulis_laporan(hasil, nama_file="laporan_suhu.txt")
     tampilkan_laporan(nama_file="laporan_suhu.txt")

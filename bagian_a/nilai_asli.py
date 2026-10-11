@@ -1,3 +1,4 @@
+# *args: jumlah nilai bebas, semua nilai terkumpul dalam tuple 'nilai'
 nilai_budi = ["80", "75", "90"]
 total = 0
 for n in nilai_budi:

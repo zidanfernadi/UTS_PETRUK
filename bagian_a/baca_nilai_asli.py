@@ -1,3 +1,4 @@
+# nilai.py : kode dari soal (baris dirapikan, isi tidak diubah)
 def baca_data(nama_file):
     data = []
     with open(nama_file, "r") as file:

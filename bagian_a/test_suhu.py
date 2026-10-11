@@ -1,3 +1,5 @@
+# test_suhu.py
+# Pengujian fungsi analisis_suhu memakai unittest
 import unittest
 from suhu import analisis_suhu, hitung_rata_rata
 
@@ -5,6 +7,7 @@ from suhu import analisis_suhu, hitung_rata_rata
 class TestAnalisisSuhu(unittest.TestCase):
 
     def setUp(self):
+        # data uji disiapkan baru sebelum tiap pengujian
         self.data = [
             {"hari": "Senin", "suhu": 31},
             {"hari": "Selasa", "suhu": 33},

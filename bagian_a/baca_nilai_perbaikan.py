@@ -1,3 +1,4 @@
+# baca_nilai_perbaikan.py : versi yang sudah diperbaiki
 def baca_data(nama_file):
     data = []
     try:

@@ -1,3 +1,5 @@
+# main.py
+# Memanggil fungsi dari hitung.py
 from hitung import tampilkan_hasil
 
 nilai_budi = [80, 75, 90]
