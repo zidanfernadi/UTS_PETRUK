@@ -13,7 +13,6 @@ MENU = """
 6. Buat laporan inventaris
 0. Keluar"""
 
-
 def cetak_tabel(daftar_barang):
     print(f"{'Kode':<6}{'Nama':<20}{'Harga':>12}{'Stok':>7}  {'Kategori'}")
     print("-" * 58)
@@ -22,11 +21,9 @@ def cetak_tabel(daftar_barang):
         harga = toko.format_rupiah(b.harga)
         print(f"{b.kode:<6}{b.nama:<20}{harga:>12}{b.stok:>7}  {kategori}")
 
-
 def ambil_inventaris():
     daftar_barang, rusak = toko.baca_data(DATA)
     return toko.Inventaris(daftar_barang) if daftar_barang else None
-
 
 def menu_tambah():
     print("\n--- Tambah Barang ---")
@@ -42,13 +39,11 @@ def menu_tambah():
         return print("Input gagal:", e)
     toko.tambah_data(DATA, toko.Barang(kode, nama, harga, stok, kategori=kategori))
 
-
 def menu_tampilkan():
     inv = ambil_inventaris()
     if inv:
         print("\n--- Daftar Barang ---")
         cetak_tabel(inv.daftar_barang)
-
 
 def menu_urutkan():
     inv = ambil_inventaris()
@@ -63,13 +58,11 @@ def menu_urutkan():
     print(f"\n--- Barang diurutkan berdasarkan {pilihan[kunci]} ---")
     cetak_tabel(inv.urutkan_barang(berdasarkan=pilihan[kunci], terbalik=terbalik))
 
-
 def menu_menipis():
     inv = ambil_inventaris()
     if inv:
         print(f"\n--- Barang dengan stok <= {toko.BATAS_STOK_MENIPIS} ---")
         cetak_tabel(inv.cari_stok_menipis(batas=toko.BATAS_STOK_MENIPIS))
-
 
 def menu_laporan():
     inv = ambil_inventaris()
@@ -78,7 +71,6 @@ def menu_laporan():
         toko.tulis_laporan(LAPORAN, isi)
         print("\nIsi laporan:")
         toko.tampilkan_isi_file(LAPORAN)
-
 
 def main():
     aksi = {"1": lambda: toko.buat_file(DATA), "2": menu_tambah,
@@ -91,7 +83,6 @@ def main():
             print("Terima kasih, program selesai.")
             break
         aksi.get(pilihan, lambda: print("Menu tidak tersedia, coba lagi."))()
-
 
 if __name__ == "__main__":
     main()

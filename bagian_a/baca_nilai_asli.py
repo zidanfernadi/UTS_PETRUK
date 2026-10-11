@@ -1,4 +1,3 @@
-# baca_nilai_asli.py : program dari soal (belum diperbaiki)
 def baca_data(nama_file):
     data = []
     with open(nama_file, "r") as file:
@@ -10,5 +9,3 @@ def baca_data(nama_file):
 
 hasil = baca_data("nilai.txt")
 print(hasil)
-
-

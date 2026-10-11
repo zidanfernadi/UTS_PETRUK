@@ -1,18 +1,14 @@
 BATAS_STOK_MENIPIS = 10
 
-
 def hitung_total(*angka):
     return sum(angka)
-
 
 def hitung_rata(*angka):
     assert len(angka) > 0, "Minimal harus ada satu angka"
     return sum(angka) / len(angka)
 
-
 def format_rupiah(angka):
     return "Rp " + f"{angka:,.0f}".replace(",", ".")
-
 
 class Barang:
 
@@ -26,7 +22,6 @@ class Barang:
     def ke_baris(self):
         kategori = self.info.get("kategori", "-")
         return f"{self.kode};{self.nama};{self.harga};{self.stok};{kategori}"
-
 
 class Inventaris:
 
